@@ -60,14 +60,18 @@ function handleDataSync() {
 // Periodically sync data with the server (every 30 seconds)
 setInterval(fetchQuotesFromServer, 30000);
 
-// Function to add a new quote
-function createAddQuoteForm() {
+// Function to add a new quote and send it to the server
+async function createAddQuoteForm() {
     const newQuoteText = document.getElementById("newQuoteText").value.trim();
     const newQuoteCategory = document.getElementById("newQuoteCategory").value.trim();
 
     if (newQuoteText && newQuoteCategory) {
-        quotes.push({ text: newQuoteText, category: newQuoteCategory });
+        const newQuote = { text: newQuoteText, category: newQuoteCategory };
+        quotes.push(newQuote);
         saveQuotes(); // Save to local storage
+
+        // Send the new quote to the server using POST method
+        await postQuoteToServer(newQuote);
 
         alert("Quote added successfully!");
 
@@ -76,6 +80,29 @@ function createAddQuoteForm() {
         document.getElementById("newQuoteCategory").value = "";
     } else {
         alert("Please fill in both the quote and category fields.");
+    }
+}
+
+// Function to post a new quote to the server using POST method
+async function postQuoteToServer(newQuote) {
+    try {
+        const response = await fetch(serverUrl, {
+            method: "POST", // HTTP method
+            headers: {
+                "Content-Type": "application/json" // Ensure the content type is JSON
+            },
+            body: JSON.stringify({
+                title: newQuote.text, // Server expects 'title' for the quote text
+                body: newQuote.category // Server expects 'body' for the quote category
+            })
+        });
+
+        if (!response.ok) {
+            throw new Error("Failed to post the quote to the server.");
+        }
+        console.log("Quote posted to the server successfully.");
+    } catch (error) {
+        console.error("Error posting the quote:", error);
     }
 }
 
