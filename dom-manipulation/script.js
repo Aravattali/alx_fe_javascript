@@ -144,7 +144,7 @@ function importFromJsonFile(event) {
 // Function to display a random quote
 // option of displaying quotes
 
-function showRandomQuote() {
+function selectedCategory() {
     const quoteDisplay = document.getElementById("quoteDisplay");
     quoteDisplay.innerHTML = ""; // Clear previous content
     // filterQuote 
@@ -173,13 +173,13 @@ function showRandomQuote() {
 }
 
 // Event Listeners
-document.getElementById("newQuote").addEventListener("click", showRandomQuote);
+document.getElementById("newQuote").addEventListener("click", selectedCategory);
 document.getElementById("addQuote").addEventListener("click", createAddQuoteForm);
 document.getElementById("exportQuotes").addEventListener("click", exportToJson);
 document.getElementById("importFile").addEventListener("change", importFromJsonFile);
 
 // Load last quote or display a random one when the page loads
 window.onload = function() {
-    showRandomQuote();
+    selectedCategory();
     fetchQuotesFromServer(); // Fetch the server data on load
 };
