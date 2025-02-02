@@ -10,7 +10,7 @@ function saveQuotes() {
     localStorage.setItem("quotes", JSON.stringify(quotes));
 }
 
-// Function to display a random quote
+// Function to show a random quote
 function showRandomQuote() {
     const quoteDisplay = document.getElementById("quoteDisplay");
     quoteDisplay.innerHTML = ""; // Clear previous content
@@ -20,7 +20,8 @@ function showRandomQuote() {
         return;
     }
 
-    const randomIndex = Math.floor(Math.random() * quotes.length); // Get random index using Math.random()
+    // Get a random index using Math.random()
+    const randomIndex = Math.floor(Math.random() * quotes.length);
     const randomQuote = quotes[randomIndex];
 
     // Store last viewed quote in session storage
