@@ -23,7 +23,7 @@ async function fetchQuotesFromServer() {
                 text: item.title, // Using title as the quote text for simplicity
                 category: item.body.substring(0, 20) // Shortened body as category
             }));
-            handleDataSync(); // Sync the server data with local data
+            syncQuotes(); // Sync the server data with local data
         } else {
             console.error("Failed to fetch server data.");
         }
@@ -32,8 +32,8 @@ async function fetchQuotesFromServer() {
     }
 }
 
-// Function to sync local data with server data
-function handleDataSync() {
+// Function to sync local quotes with server quotes
+function syncQuotes() {
     const localQuoteText = quotes.map((quote) => quote.text);
     const serverQuoteText = serverData.map((quote) => quote.text);
 
