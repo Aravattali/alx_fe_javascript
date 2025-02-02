@@ -129,7 +129,7 @@ function importFromJsonFile(event) {
             if (Array.isArray(importedQuotes)) {
                 quotes.push(...importedQuotes);
                 saveQuotes();
-                alert("Quotes imported successfully!");
+                alert("Quotes synced with server!");
             } else {
                 alert("Invalid file format.");
             }
