@@ -145,6 +145,7 @@ function importFromJsonFile(event) {
 function showRandomQuote() {
     const quoteDisplay = document.getElementById("quoteDisplay");
     quoteDisplay.innerHTML = ""; // Clear previous content
+    // option of displaying quotes
 
     if (quotes.length === 0) {
         quoteDisplay.textContent = "No quotes available. Add some!";
