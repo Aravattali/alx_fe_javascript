@@ -143,6 +143,7 @@ function importFromJsonFile(event) {
 
 // Function to display a random quote
 // option of displaying quotes
+// showRandomQuote
 
 function selectedCategory() {
     const quoteDisplay = document.getElementById("quoteDisplay");
