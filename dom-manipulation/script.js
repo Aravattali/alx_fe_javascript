@@ -13,8 +13,8 @@ function saveQuotes() {
     localStorage.setItem("quotes", JSON.stringify(quotes));
 }
 
-// Function to simulate fetching data from the server
-async function fetchServerData() {
+// Function to fetch quotes from the server (using the fetchQuotesFromServer function)
+async function fetchQuotesFromServer() {
     try {
         const response = await fetch(serverUrl);
         if (response.ok) {
@@ -23,7 +23,7 @@ async function fetchServerData() {
                 text: item.title, // Using title as the quote text for simplicity
                 category: item.body.substring(0, 20) // Shortened body as category
             }));
-            handleDataSync();
+            handleDataSync(); // Sync the server data with local data
         } else {
             console.error("Failed to fetch server data.");
         }
@@ -53,12 +53,12 @@ function handleDataSync() {
         return conflictingServerQuote || localQuote;
     });
 
-    saveQuotes();
+    saveQuotes(); // Save the updated quotes to local storage
     alert("Data synced with the server.");
 }
 
 // Periodically sync data with the server (every 30 seconds)
-setInterval(fetchServerData, 30000);
+setInterval(fetchQuotesFromServer, 30000);
 
 // Function to add a new quote
 function createAddQuoteForm() {
@@ -151,5 +151,5 @@ document.getElementById("importFile").addEventListener("change", importFromJsonF
 // Load last quote or display a random one when the page loads
 window.onload = function() {
     showRandomQuote();
-    fetchServerData(); // Fetch the server data on load
+    fetchQuotesFromServer(); // Fetch the server data on load
 };
