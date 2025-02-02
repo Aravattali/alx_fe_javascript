@@ -14,6 +14,7 @@ function saveQuotes() {
 }
 
 // Function to fetch quotes from the server (using the fetchQuotesFromServer function)
+// populateCategories , categoryFilter
 async function fetchQuotesFromServer() {
     try {
         const response = await fetch(serverUrl);
