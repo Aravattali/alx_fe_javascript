@@ -142,11 +142,12 @@ function importFromJsonFile(event) {
 }
 
 // Function to display a random quote
+// option of displaying quotes
+
 function showRandomQuote() {
     const quoteDisplay = document.getElementById("quoteDisplay");
     quoteDisplay.innerHTML = ""; // Clear previous content
-    // option of displaying quotes
-
+    // filterQuote 
     if (quotes.length === 0) {
         quoteDisplay.textContent = "No quotes available. Add some!";
         return;
